@@ -32,21 +32,57 @@ class LinkedList:
         self.head = None
         self.length = 0
 
-    def reverse_between(self,m,n):
-        dummy = Node(0)
-        dummy.next = self.head
-        runner = dummy
-        for _ in range(m):
-            runner = runner.next
-        curr = runner.next
-        for _ in range (n-m):
-            temp = curr.next
-            temp.next = curr
-            curr.next = temp.next
-            dummy.next = temp
-        self.head = dummy.next
+    def reverse_between(self, m, n):
+    # 1. Edge Case: If the list has only one node or none,
+    # there's nothing to reverse.
+    if self.length <= 1:
+        return
+
+  # 1 pre 2345 6
+  # 1 pre 3245 6
+    # 2. Create a dummy node. This will help in case we are 
+    # reversing from the start of the list.
+    dummy = Node(0)
+    dummy.next = self.head  # Let it point to the start of the list.
+ 
+    # 3. Initialize 'prev' pointer. This will end up pointing 
+    # to the node just before the reversal starts.
+    prev = dummy
+ 
+    # 4. Move 'prev' to its intended position.
+    # After this loop, 'prev' will be at index 'm - 1'.
+    for i in range(m):
+        prev = prev.next
+ 
+    # 5. Initialize 'current' pointer. It will point 
+    # to the node at position 'm', the start of the reversal.
+    current = prev.next
+ 
+    # 6. Begin Reversal:
+    # This loop will perform the main task of reversing the
+    # nodes between 'm' and 'n'.
+    for i in range(n - m):
+        # 6.1. 'temp' will point to the next node in line
+        # that we want to reverse.
+        temp = current.next
+ 
+        # 6.2. Disconnect 'temp' from the list and 
+        # point 'current' to the node after 'temp'.
+        current.next = temp.next
+ 
+        # 6.3. Prepare to insert 'temp' to its new position.
+        # Connect 'temp' to the node immediately after 'prev'.
+        temp.next = prev.next
+ 
+        # 6.4. Now, connect 'prev' to 'temp' completing 
+        # its new placement in the reversed segment.
+        prev.next = temp
+ 
+    # 7. If m was 0, then we reversed from the start and
+    # we need to update the head of the list.
+    self.head = dummy.next
+
     
-# 1 dummy 3245 56
 
 linked_list = LinkedList(1)
 linked_list.append(2)
