@@ -39,7 +39,9 @@ class DoublyLinkedList:
     dummy = Node(0)
     dummy.next = self.head
     prev = dummy
- 
+  
+ 1234
+
     # 2. Loop through the doubly linked list in pairs as long as there are 
     # at least two nodes left.
     while self.head and self.head.next:
@@ -69,7 +71,7 @@ class DoublyLinkedList:
         if first_node.next:
             first_node.next.prev = first_node
  
-        # 2.8. Move the head pointer to start at the next pair of nodes.
+        # 2.8. Move the head pointer to start at the next pair of nodes.  
         self.head = first_node.next
         
         # 2.9. Update 'prev' to point to 'first_node' for the next iteration.
