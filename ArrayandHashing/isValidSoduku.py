@@ -33,12 +33,12 @@ class Solution():
         return False
 
     #check each col
-    col = []
     for i in range(9):
+      col = []
       for j in range(9):
         col.append(board[j][i])
-    if not isValid(board[i]):
-      return False
+      if not isValid(col):
+        return False
 
     # check each sub-box 3x3:
     # looop via each sub box:
