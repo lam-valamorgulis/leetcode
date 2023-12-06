@@ -12,13 +12,13 @@ class Solution():
         if c == "+":
             stack.append(stack.pop() + stack.pop())
         elif c == "-":
-            a, b = stack.pop(), stack.pop()
-            stack.append(b - a)
+            r, l = stack.pop(), stack.pop()
+            stack.append(l - r)
         elif c == "*":
             stack.append(stack.pop() * stack.pop())
         elif c == "/":
-            a, b = stack.pop(), stack.pop()
-            stack.append(int(float(b) / a))
+            r, l = stack.pop(), stack.pop()
+            stack.append(int(float(l) / r))
         else:
             stack.append(int(c))
     return stack[0]
