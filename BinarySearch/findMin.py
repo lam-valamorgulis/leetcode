@@ -2,7 +2,7 @@
 
 # Key solution :
 # usually O(logn) is binary search
-#  the linear graph
+#  the line
 # finding the middle, the middle value if bigger then the right most 
 
 
