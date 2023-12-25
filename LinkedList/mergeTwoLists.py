@@ -1,43 +1,63 @@
-# https://leetcode.com/problems/merge-two-sorted-lists/
+# https://leetcode.com/problems/reorder-list/
 # Key solution :
-# linked list all come down to the pointer(reference) node.next = nextnode
-# note the way how we create an empty linked list, and a dummy start from null then pointer the first node
-# when traversing, notice the way how update the curr node, and other dummny node (new_node = currnode.next)
-# notice the way pointer is point to the location of memory
-# traversing curr mean update the dummy list node
-
+# 1.divide problem into smaller known problem : reversed linked list, merger two list
+# 2.find the middle node of linked list
+# 3.reversed second half of linked list
+# 4. merge first and second half
+# note : 
+# -how to find the middle node of the linked list, ho
+# -how to make a reversed linked list
+# -how to disconnect the noode
+# -how to merged 2 linked list
 
 class Solution(object):
-  # Input: list1 = [1,2,4], list2 = [1,3,4]
-  # Output: [1,1,2,3,4,4]
 
-  def mergeTwoLists(self, list1, list2):
-    # create a dummy node :
-    dummy = ListNode()
-    # creat a current node to traverse the linked list :
-    curr = dummy
+def reorderList(self, head):
 
-    # traverse until no more node in list1 or list2 :
-    while list1 and list2:
-      if list1.val < list2.val:
-        # curr.next point to the list1 :
-        curr.next = list1
-        # moving list1 to the next
-        list1 = list1.next
-        # otherwise list1.val >= list2.val
-      else:
-        # curr.next point to the list1 :
-        curr.next = list2
-        # moving list1 to the next
-        list2 = list2.next
-      # move curr to to the next
-      curr = curr.next
-    if list1:
-      curr.next = list1
-    if list2:
-      curr.next = list2
-    # The merged list starts from the next node of the dummy node (the first actual node in the merged list).
-    return dummy.next
+    # Define a helper function to reverse a linked list
+    def reverse_list(node):
+        prev = None
+        curr = node
+        while curr:
+            next_node = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_node
+        return prev
+
+    # Define a helper function to merge two linked lists
+    def merge_lists(first, second):
+        while second:
+            next_first = first.next
+            next_second = second.next
+
+            first.next = second
+            second.next = next_first
+
+            first = next_first
+            second = next_second
+
+    # 1. Find the middle node in the linked list
+    slow, fast = head, head
+    while fast.next and fast.next.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    # 2. Reverse the second half of the linked list
+    second_half = reverse_list(slow.next)
+    # 3. Disconnect the first half
+    slow.next = None
+    # 4. Merge the first and reversed second halves
+    merge_lists(head, second_half)
+
+
+
+
+
+
+
+    
+    
 
 
 solution = Solution()
