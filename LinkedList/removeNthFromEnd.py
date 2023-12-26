@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 # Key word :
-# two pointer : 
-# + keeping the distance of 2 pointer, 
+# two pointer :
+# + keeping the distance of 2 pointer,
 # + using pointer to modified the linked between node
 # + when we modify the next pointer of first or second, we are actually modifying the next pointer of the dummy node, which, in turn, affects the linked list. Let me explain with an example:
 # delele node : curr.next = curr.next.next
@@ -15,7 +15,7 @@ class Solution(object):
   # After traversing and removing the nth node: dummy -> 0 -> 1 -> 2 -> 3 -> 5
   # The modified list starts from dummy.next, so returning dummy.next gives us the correct head of the modified list.
 
-  def removeNthFromEnd(head, n):
+  def removeNthFromEnd(self, head, n):
     # Create a dummy node to handle the case when the head needs to be removed
     dummy = ListNode()
     dummy.next = head
@@ -38,4 +38,4 @@ class Solution(object):
     return dummy.next
 
 
-solution = Solution()
+# solution = Solution()
