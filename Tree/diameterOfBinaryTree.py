@@ -1,13 +1,36 @@
-# https://leetcode.com/problems/balanced-binary-tree/
+# https://leetcode.com/problems/diameter-of-binary-tree/
 
-# Definition for a binary tree node.
-# how to solve :
-# + for each node calc the diff of depth of node.right and node.left
-# +check each every node in sub-tree cant
+# Overall:
+#          Understand the Problem:
+
+# The problem asks us to find the diameter of a binary tree, which is the length of the longest path between any two nodes in the tree.
+# Define the Diameter:
+
+# In a binary tree, the diameter might pass through the root node or it might not. So, the diameter is the maximum of:
+# The diameter of the left subtree.
+# The diameter of the right subtree.
+# The sum of the depths of the left and right subtrees (passing through the root).
+# Depth-First Search (DFS):
+
+# Use a depth-first search (DFS) approach to traverse the binary tree.
+# At each node, calculate the depth of the left and right subtrees recursively.
+# Update Diameter:
+
+# At each node, calculate the potential diameter passing through that node (sum of depths of left and right subtrees).
+# Update the overall diameter if the potential diameter is greater.
+# Return Result:
+
+# The final result will be the overall diameter of the binary tree.
+# Example:
+
+# Consider a sample binary tree. For each node, calculate the depths of the left and right subtrees. Update the diameter if the potential diameter passing through that node is greater than the current maximum.
 
 
-# This code checks if a binary tree is balanced by calculating the height difference between left and right subtrees for each node. If any subtree is unbalanced, the entire tree is considered unbalanced. If all subtrees are balanced, the overall tree is considered balanced.
-class TreeNode(object):
+# smaller problem :
+# how to make a dfs, count the height of bst
+# how to calc the diamiter of the bst
+# in time dfs traversing the tree will always keep track of diameter
+class TreeNode:
 
   def __init__(self, val=0, left=None, right=None):
     self.val = val
@@ -15,28 +38,23 @@ class TreeNode(object):
     self.right = right
 
 
-class Solution(object):
+class Solution:
 
-  def isBalanced(self, root):
-    # Function to calculate the depth of a subtree rooted at a given node
+  def diameterOfBinaryTree(self, root):
+    self.diameter = 0  # Variable to store the diameter
+
     def depth(node):
-      # Base case: If the node is None (empty), return 0
       if not node:
         return 0
-
       # Recursively calculate the depth of the left and right subtrees
       left_depth = depth(node.left)
       right_depth = depth(node.right)
 
-      # Check if the subtree is unbalanced
-      if left_depth == -1 or right_depth == -1 or abs(left_depth -
-                                                      right_depth) > 1:
-        return -1  # Indicates that the subtree is unbalanced
+      # Update the diameter with the sum of depths of left and right subtrees
+      self.diameter = max(self.diameter, left_depth + right_depth)
 
-      # If the subtree is balanced, return the height of the subtree
+      # Return the depth of the subtree rooted at the current node
       return 1 + max(left_depth, right_depth)
 
-    # Start the depth calculation from the root of the tree
-    # If the overall tree is balanced, the result will be the height of the tree
-    # If unbalanced, the result will be -1
-    return depth(root) != -1
+    depth(root)  # Start the depth calculation from the root
+    return self.diameter
