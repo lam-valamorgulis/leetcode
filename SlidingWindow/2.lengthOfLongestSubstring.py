@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/longest-substring-without-repeating-characters/
+# note: right pointer control by using for loop
 class Solution():
 
   def lengthOfLongestSubstring(self, s):

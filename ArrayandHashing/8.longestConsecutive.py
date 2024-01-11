@@ -2,8 +2,7 @@
 # instuitive question :
 # how to know the consecutive in the array ?
 # reduce the val of number by one and check if in the set() if it in the set() it mean it not the lowest streak
-# if it is the lowest then start calting the streak
-
+# if it is the lowest then start calting the streak from lowest to until no num in set
 
 
 class Solution():

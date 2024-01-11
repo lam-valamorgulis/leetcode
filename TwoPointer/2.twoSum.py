@@ -1,3 +1,8 @@
+# https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
+
+# create a left pointer and right pointer, examinize the logic pointer itself, while moving the pointer
+
+
 class Solution():
 
   # this solution wil add more memory
