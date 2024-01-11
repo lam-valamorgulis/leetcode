@@ -1,3 +1,11 @@
+# https://leetcode.com/problems/product-of-array-except-self/
+# note:
+# each node have 2 differ part: right part and left part
+# how to accumulate the production of all node left or right part ?
+# + init a product_num = 1
+# + each iteration the product_num = product_num* num
+
+
 class Solution(object):
 
   # Solution 1 : O(n^2)

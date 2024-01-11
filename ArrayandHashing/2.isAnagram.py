@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/valid-anagram/
+
 class Solution():
 
   # soluttion 1 :
@@ -11,8 +13,8 @@ class Solution():
   #   return False
 
   # solution 2 : using hashmap table (key-value dict in python) :
-  # step 1 : if key = unique value in string, value will be a number of value
-  # step 2 : check if 2 hashtable is equal
+  # step 1: create 2 new hash table to store unique key-value
+  # step 2: check if 2 hashtable is equal
   def isAnagram(self, s, t):
     hashTableS, hashTableT = {}, {}
     if len(s) != len(t):

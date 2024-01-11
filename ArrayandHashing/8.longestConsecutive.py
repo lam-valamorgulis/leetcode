@@ -1,3 +1,11 @@
+# https://leetcode.com/problems/longest-consecutive-sequence/description/
+# instuitive question :
+# how to know the consecutive in the array ?
+# reduce the val of number by one and check if in the set() if it in the set() it mean it not the lowest streak
+# if it is the lowest then start calting the streak
+
+
+
 class Solution():
 
   # solution for O(nlog) :

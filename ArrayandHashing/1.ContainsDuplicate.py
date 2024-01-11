@@ -1,3 +1,6 @@
+# https://leetcode.com/problems/contains-duplicate/
+
+
 class Solution():
 
   # ========== SOLUTION 1 ===========
