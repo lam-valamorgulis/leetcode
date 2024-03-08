@@ -34,5 +34,3 @@ class Twitter:
   def unfollow(self, followerId: int, followeeId: int) -> None:
     if followeeId in self.following[followerId]:
       self.following[followerId].remove(followeeId)
-
-
