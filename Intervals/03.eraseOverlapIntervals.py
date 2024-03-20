@@ -1,22 +1,15 @@
-# https://leetcode.com/problems/non-overlapping-intervals/
+# https://leetcode.com/problems/maximum-subarray/
 
 
 class Solution:
 
-  def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-    if not intervals:
+  def maxSubArray(self, nums: List[int]) -> int:
+    if not nums:
       return 0
 
-    intervals.sort(key=self.get_start_time)
-    res = [intervals[0]]
+    max_curr = max_gol = nums[0]
 
-    for interval in intervals[1:]:
-      if interval[0] < res[-1][1]:  # If there is overlap
-        res[-1][1] = min(res[-1][1], interval[1])  # Merge intervals
-      else:
-        res.append(interval)  # No overlap, add interval to result
-
-    return len(intervals) - len(res)
-
-  def get_start_time(self, interval: List[int]) -> int:
-    return interval[0]
+    for num in nums[1:]:
+      max_curr = max(num, max_curr + num)
+      max_gol = max(max_gol, max_curr)
+    return max_gol
