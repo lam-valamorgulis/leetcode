@@ -1,14 +1,18 @@
-#https://leetcode.com/problems/pascals-triangle-ii/
+# https://leetcode.com/problems/counting-bits/
 
 
 class Solution:
 
-    def getRow(self, rowIndex: int) -> List[int]:
-        triangle = [[1]]
-        for i in range(1, rowIndex + 1):
-            row = [1]
-            for j in range(1, i):
-                row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
-            row.append(1)
-            triangle.append(row)
-        return triangle[rowIndex]
+    def countBits(self, n: int) -> List[int]:
+        # Create a list to hold our counts
+        counts = [0] * (n + 1)
+
+        # Go through each number and count red toys
+        for i in range(1, n + 1):
+            # If i is even, it has the same number of red toys as i // 2
+            counts[i] = counts[i // 2]
+            # If i is odd, it has one more red toy than i - 1
+            if i % 2 == 1:
+                counts[i] = counts[i - 1] + 1
+
+        return counts
