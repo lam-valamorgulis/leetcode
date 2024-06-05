@@ -1,5 +1,4 @@
-# https://leetcode.com/problems/fair-distribution-of-cookies/
-
+#https://leetcode.com/problems/number-of-good-ways-to-split-a-string/description/
 class Solution:
     def distributeCookies(self, cookies: List[int], k: int) -> int:
         children = [0] * k
