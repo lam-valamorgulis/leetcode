@@ -1,20 +1,24 @@
-# https://leetcode.com/problems/predict-the-winner/
+# https://leetcode.com/problems/solving-questions-with-brainpower/
 
- class Solution:
-     def predictTheWinner(self, nums: List[int]) -> bool:
-         memo = {}
-         def maxDiff(i, j):
-             if (i, j) in memo:
-                 return memo[(i, j)]
 
-             if i == j:
-                 return nums[i]
+class Solution:
 
-             pick_i = nums[i] - maxDiff(i + 1, j)
-             pick_j = nums[j] - maxDiff(i, j - 1)
-             memo[(i, j)] = max(pick_i, pick_j)
+    def mostPoints(self, questions: List[List[int]]) -> int:
+        n = len(questions)
+        memo = {}
 
-             return memo[(i, j)]
+        def dp(i):
+            if i >= n:
+                return 0
+            if i in memo:
+                return memo[i]
 
-         return maxDiff(0, len(nums) - 1) >= 0
+            # Option 1: Solve the current question
+            solve = questions[i][0] + dp(i + questions[i][1] + 1)
+            # Option 2: Skip the current question
+            skip = dp(i + 1)
 
+            memo[i] = max(solve, skip)
+            return memo[i]
+
+        return dp(0)
