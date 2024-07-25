@@ -1,23 +1,19 @@
-# https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/
-
- MOD = 10**9 + 7
+# https://leetcode.com/problems/video-stitching/
 
  class Solution:
-     def numRollsToTarget(self, n: int, k: int, target: int) -> int:
-         memo = {}
-         def ways(i, t):
-             if i == n:
-                 return 1 if t == 0 else 0
-             if t < 0:
-                 return 0
-             if (i, t) in memo:
-                 return memo[(i, t)]
-             result = 0
-             for x in range(1, k + 1):
-                 result += ways(i + 1, t - x)
-                 result %= MOD
-             memo[(i, t)] = result
-             return result
+     def videoStitching(self, clips: List[List[int]], time: int) -> int:
+             # Initialize dp array with infinity and dp[0] with 0
+         dp = [float('inf')] * (time + 1)
+         dp[0] = 0
 
-         return ways(0, target)
+         # Iterate over each time point
+         for t in range(1, time + 1):
+             # Iterate over all clips
+             for start, end in clips:
+                 if start <= t <= end:
+                     dp[t] = min(dp[t], dp[start] + 1)
+
+         # If dp[time] is still infinity, return -1
+         return -1 if dp[time] == float('inf') else dp[time]
+
 
