@@ -1,24 +1,14 @@
-# https://leetcode.com/problems/optimal-division/
+# https://leetcode.com/problems/best-sightseeing-pair/
 
 
 class Solution:
 
-    def optimalDivision(self, nums: List[int]) -> str:
-        # If there's only one number, just return it as a string.
-        if len(nums) == 1:
-            return str(nums[0])
+    def maxScoreSightseeingPair(self, values: List[int]) -> int:
+        max_score = float('-inf')
+        max_i = values[0]
 
-        # If there are two numbers, just return them divided.
-        if len(nums) == 2:
-            return str(nums[0]) + "/" + str(nums[1])
+        for j in range(1, len(values)):
+            max_score = max(max_score, max_i + values[j] - j)
+            max_i = max(max_i, values[j] + j)
 
-        # Convert the first number to a string
-        first_number = str(nums[0])
-
-        # Convert the remaining numbers to strings and join them with '/'
-        remaining_numbers = "/".join(map(str, nums[1:]))
-
-        # Combine the first number with the joined remaining numbers wrapped in parentheses
-        result = first_number + "/(" + remaining_numbers + ")"
-
-        return result
+        return max_score
